@@ -1,6 +1,15 @@
+# Node & dependencies
+node_modules/
+dist/
+dist-app/
+.vite/
+
 # Gradle files
 .gradle/
 build/
+android/app/build/
+android/build/
+android/.gradle/
 
 # Local configuration file (sdk path, etc)
 local.properties
