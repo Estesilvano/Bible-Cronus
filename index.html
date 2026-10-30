@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>OpenCode Agent</title>
+  <link rel="stylesheet" href="./src/ui/style.css" />
+</head>
+<body>
+  <div id="app" class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <span class="icon">🤖</span>
+        <div>
+          <h1>OpenCode Agent</h1>
+          <span class="subtitle">Hermes Sandbox &amp; Free LLMs</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-undo" class="btn btn-secondary" title="Desfazer última alteração">↩️ Desfazer</button>
+        <button id="btn-cancel" class="btn btn-danger" title="Interromper ação em andamento" disabled>⏹️ Cancelar</button>
+        <button id="btn-settings" class="btn btn-icon" title="Configurações e Permissões">⚙️</button>
+      </div>
+    </header>
+
+    <!-- Main Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-chat">💬 Chat &amp; Tarefas</button>
+      <button class="tab-btn" data-tab="tab-sandbox">📁 Arquivos Sandbox</button>
+      <button class="tab-btn" data-tab="tab-activity">⚡ Atividade Real-Time</button>
+      <button class="tab-btn" data-tab="tab-models">🌐 Modelos Gratuitos</button>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+      <!-- Chat Tab -->
+      <section id="tab-chat" class="tab-content active">
+        <div id="chat-messages" class="chat-messages">
+          <div class="message system-msg">
+            <span class="badge">Protegido</span>
+            Olá! Sou seu assistente OpenCode em ambiente isolado. Todas as ações em arquivos ocorrem com segurança dentro do contêiner seguro e podem ser desfeitas a qualquer momento.
+          </div>
+        </div>
+        <div class="chat-input-bar">
+          <textarea id="prompt-input" placeholder="Peça uma tarefa, busca inteligente ou código..." rows="1"></textarea>
+          <button id="btn-send" class="btn btn-primary">Enviar</button>
+        </div>
+      </section>
+
+      <!-- Sandbox Files Tab -->
+      <section id="tab-sandbox" class="tab-content">
+        <div class="section-header">
+          <h2>Pasta Isolada do Dispositivo</h2>
+          <span class="safe-badge">🔒 Acesso 100% restrito a esta pasta</span>
+        </div>
+        <div class="file-actions-bar">
+          <button id="btn-refresh-files" class="btn btn-secondary">🔄 Atualizar Lista</button>
+          <button id="btn-new-file" class="btn btn-primary">+ Novo Arquivo</button>
+        </div>
+        <div id="file-list" class="file-list">
+          <p class="empty-state">Nenhum arquivo criado na pasta isolada ainda.</p>
+        </div>
+      </section>
+
+      <!-- Real-Time Activity Log Tab -->
+      <section id="tab-activity" class="tab-content">
+        <div class="section-header">
+          <h2>Monitor em Tempo Real</h2>
+          <button id="btn-clear-logs" class="btn btn-secondary">Limpar Logs</button>
+        </div>
+        <div id="activity-log" class="terminal-log">
+          <div class="log-entry log-info">[Sistema] Monitor pronto. Acompanhe cada etapa aqui.</div>
+        </div>
+      </section>
+
+      <!-- Models & Routing Tab -->
+      <section id="tab-models" class="tab-content">
+        <div class="section-header">
+          <h2>Roteador de Modelos Gratuitos</h2>
+        </div>
+        <div class="providers-list" id="providers-list">
+          <!-- Dynamic provider cards rendered via JS -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="modal-settings" class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Permissões e Segurança</h3>
+          <button id="btn-close-modal" class="btn-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="desc">Defina o que o agente tem permissão para fazer no celular:</p>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="perm-read" checked />
+              Ler arquivos na pasta isolada
+            </label>
+          </div>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="perm-write" checked />
+              Criar e editar arquivos na pasta isolada
+            </label>
+          </div>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="perm-search" checked />
+              Busca Inteligente na Web
+            </label>
+          </div>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="perm-confirm-del" checked />
+              Exigir confirmação antes de apagar arquivos
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="btn-save-settings" class="btn btn-primary">Salvar Permissões</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/ui/app.ts"></script>
+</body>
+</html>

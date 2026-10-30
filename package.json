@@ -1,0 +1,30 @@
+{
+  "name": "opencode-android-cli",
+  "version": "1.0.0",
+  "description": "Safe Sandboxed Hermes-style Autonomous Agent & CLI for Android with Free LLM Router",
+  "main": "dist/cli.js",
+  "scripts": {
+    "build": "tsc && vite build",
+    "test": "vitest run",
+    "start": "vite",
+    "cli": "ts-node src/cli.ts",
+    "capacitor:sync": "cap sync android",
+    "build:apk": "npm run build && cap sync android && cd android && ./gradlew assembleDebug"
+  },
+  "keywords": ["ai", "agent", "android", "sandbox", "cli", "free-llm", "groq", "openrouter"],
+  "author": "OpenCode",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/filesystem": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.0",
+    "vitest": "^1.3.0"
+  }
+}
